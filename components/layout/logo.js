@@ -1,5 +1,6 @@
 import classes from "./logo.module.css";
+import { Box } from "@mui/material";
 
 export default function Logo() {
-  return <div className={classes.logo}>Mustafa Next Blog</div>;
+  return <Box>My Blog</Box>;
 }
