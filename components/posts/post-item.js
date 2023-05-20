@@ -1,8 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 
 export default function PostItem({ title, image, excerpt, date, slug }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
@@ -10,10 +18,15 @@ export default function PostItem({ title, image, excerpt, date, slug }) {
   });
   const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${slug}`;
+  console.log("isMobile", isMobile);
 
   return (
-    <Box display={"flex"} mt={"1.5rem"}>
-      <Box width={"180px"} height={"180px"} overflow={"hidden"}>
+    <Box
+      display={"flex"}
+      mt={"1.5rem"}
+      flexDirection={isMobile ? "column" : "row"}
+    >
+      <Box width={"180px"} overflow={"hidden"}>
         <Image
           style={{
             objectFit: "cover",
@@ -25,7 +38,7 @@ export default function PostItem({ title, image, excerpt, date, slug }) {
           layout="responsive"
         />
       </Box>
-      <Box pl={2}>
+      <Box pl={isMobile ? 0 : 2}>
         <Typography
           fontFamily={"Source Serif Pro"}
           fontWeight={"600"}
@@ -53,11 +66,12 @@ export default function PostItem({ title, image, excerpt, date, slug }) {
           fontWeight={"400"}
           textTransform={"capitalize"}
           pt={"1rem"}
+          color={"#979797"}
         >
           {formattedDate}
         </Typography>
 
-        <Box pt={"1.2rem"}>
+        <Box pt={"1rem"}>
           <Button variant="text" sx={{ p: 0 }}>
             <Link href={linkPath}>
               <Typography

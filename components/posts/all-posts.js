@@ -3,7 +3,7 @@ import PostsGrid from "./posts-grid";
 
 export default function AllPosts({ posts }) {
   return (
-    <Box component={"section"} sx={{ backgroundColor: "white" }} pt={"6rem"}>
+    <Box component={"section"} sx={{ backgroundColor: "white" }} mt={"6rem"}>
       <Container maxWidth="md">
         <Typography
           fontFamily={"Source Serif Pro"}

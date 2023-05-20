@@ -4,34 +4,30 @@ import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { Box, Container } from "@mui/material";
 
 export default function PostContent({ post }) {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
-    // img(image) {
-    //   return (
-    //     <Image
-    //       src={`/images/posts/${post.slug}/${image.src}`}
-    //       alt={image.alt}
-    //       width={600}
-    //       height={300}
-    //     />
-    //   );
-    // },
     p(paragraph) {
       const { node } = paragraph;
       if (node.children[0].tagName === "img") {
         const image = node.children[0];
         return (
-          <div className={classes.image}>
+          <Box
+            component={"div"}
+            m={"1rem auto"}
+            width={"100%"}
+            maxWidth={"600px"}
+          >
             <Image
               src={`/images/posts/${post.slug}/${image.properties.src}`}
               alt={image.properties.alt}
               width={600}
               height={300}
             />
-          </div>
+          </Box>
         );
       }
       return <p>{paragraph.children}</p>;
@@ -49,9 +45,22 @@ export default function PostContent({ post }) {
     },
   };
   return (
-    <article className={classes.content}>
-      <PostHeader title={post.title} image={imagePath} />
-      <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
-    </article>
+    <Box component={"article"}>
+      <Container maxWidth="md">
+        <PostHeader title={post.title} image={imagePath} />
+        <Box
+          mt={"6rem"}
+          fontFamily={"Source Serif Pro"}
+          fontSize={"16px"}
+          lineHeight={"25px"}
+        >
+          <ReactMarkdown components={customRenderers}>
+            {post.content}
+          </ReactMarkdown>
+        </Box>
+      </Container>
+    </Box>
+    // <article className={classes.content}>
+    // </article>
   );
 }

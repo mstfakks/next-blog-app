@@ -7,7 +7,7 @@ export default function Hero() {
       component={"section"}
       textAlign={"center"}
       sx={{ backgroundColor: "white" }}
-      pt={"96px"}
+      mt={"96px"}
     >
       <Container maxWidth="sm">
         <Box

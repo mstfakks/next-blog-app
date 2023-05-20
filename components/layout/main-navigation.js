@@ -8,6 +8,8 @@ import {
   IconButton,
   Drawer,
   Button,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -19,6 +21,8 @@ const navLinks = [
 ];
 
 export default function MainNavigation() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerOpen = () => {
     setMobileOpen(true);
@@ -98,7 +102,7 @@ export default function MainNavigation() {
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: isMobile ? "space-between" : "space-around",
           }}
         >
           <Box component="div">

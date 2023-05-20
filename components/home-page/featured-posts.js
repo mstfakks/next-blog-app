@@ -15,10 +15,10 @@ export default function FeaturedPosts({ posts }) {
         >
           Latest Posts
         </Typography>
-        <Box pt="1.56rem">
+        <Box pt="0.5rem">
           <PostsGrid posts={posts} />
         </Box>
-        <Box>
+        <Box my={"2.4rem"}>
           <Button
             variant="text"
             sx={{ backgroundColor: "#F5F5F7" }}
