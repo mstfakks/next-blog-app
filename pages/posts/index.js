@@ -13,6 +13,7 @@ export default function AllPostsPage({ posts }) {
           content="A list of all programming-related tutorials and posts"
         />
       </Head>
+
       <AllPosts posts={posts} />
     </Fragment>
   );

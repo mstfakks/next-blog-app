@@ -1,11 +1,22 @@
-import classes from "./all-posts.module.css";
+import { Box, Container, Typography } from "@mui/material";
 import PostsGrid from "./posts-grid";
 
 export default function AllPosts({ posts }) {
   return (
-    <section className={classes.posts}>
-      <h1>All Posts</h1>
-      <PostsGrid posts={posts} />
-    </section>
+    <Box component={"section"} sx={{ backgroundColor: "white" }} pt={"6rem"}>
+      <Container maxWidth="md">
+        <Typography
+          fontFamily={"Source Serif Pro"}
+          fontWeight={"600"}
+          fontSize={"26px"}
+          lineHeight={"35px"}
+        >
+          All Posts
+        </Typography>
+        <Box pt={"1.06rem"}>
+          <PostsGrid posts={posts} />
+        </Box>
+      </Container>
+    </Box>
   );
 }

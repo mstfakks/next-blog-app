@@ -1,10 +1,46 @@
+import { Box, Button, Container, Typography } from "@mui/material";
 import PostsGrid from "../posts/posts-grid";
-import classes from "./featured-posts.module.css";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useRouter } from "next/router";
 export default function FeaturedPosts({ posts }) {
+  const router = useRouter();
   return (
-    <section className={classes.latest}>
-      <h2>Featured Posts</h2>
-      <PostsGrid posts={posts} />
-    </section>
+    <Box component={"section"} pt={"4rem"} sx={{ backgroundColor: "white" }}>
+      <Container maxWidth="md">
+        <Typography
+          fontFamily={"Source Serif Pro"}
+          fontWeight={"600"}
+          fontSize={"26px"}
+          lineHeight={"32px"}
+        >
+          Latest Posts
+        </Typography>
+        <Box pt="1.56rem">
+          <PostsGrid posts={posts} />
+        </Box>
+        <Box>
+          <Button
+            variant="text"
+            sx={{ backgroundColor: "#F5F5F7" }}
+            endIcon={<NavigateNextIcon sx={{ color: "#7247CA" }} />}
+            onClick={() => {
+              router.push("/posts");
+            }}
+          >
+            <Typography
+              fontFamily={"Source Serif Pro"}
+              fontWeight={"400"}
+              fontSize={"14px"}
+              lineHeight={"18px"}
+              color={"#7247CA"}
+              py="0.3rem"
+              textTransform={"capitalize"}
+            >
+              View All Posts
+            </Typography>
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }
