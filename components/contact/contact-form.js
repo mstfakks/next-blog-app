@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./contact-form.module.css";
 import Notification from "../ui/notification";
+import { Box, Container, Typography } from "@mui/material";
 
 async function sendContactData(contactDetails) {
   const response = await fetch("api/contact", {
@@ -82,52 +83,74 @@ export default function ContactForm() {
   }
 
   return (
-    <section className={classes.contact}>
-      <h1>How can I help you ?</h1>
-      <form className={classes.form} onSubmit={handleSendMessage}>
-        <div className={classes.controls}>
-          <div className={classes.control}>
-            <label htmlFor="email">Your Email</label>
-            <input
-              type="email"
-              id="email"
-              required
-              value={enteredEmail}
-              onChange={(event) => setEnteredEmail(event.target.value)}
-            />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="name">Your Name</label>
-            <input
-              type="text"
-              id="name"
-              required
-              value={enteredName}
-              onChange={(event) => setEnteredName(event.target.value)}
-            />
-          </div>
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="message">Your Message</label>
-          <textarea
-            id="message"
-            rows="5"
-            value={enteredMessage}
-            required
-            onChange={(event) => setEnteredMessage(event.target.value)}
-          ></textarea>
-        </div>
-        <div className={classes.actions}>
-          <button>Send Message</button>
-        </div>
-      </form>
-      {notification && (
-        <Notification
-          status={notification.status}
-          message={notification.message}
-          title={notification.title}
-        />
-      )}
-    </section>
+    <Box component={"section"} mt={"6rem"}>
+      <Container maxWidth="sm">
+        <Typography
+          fontFamily={"Source Serif Pro"}
+          fontWeight={"600"}
+          fontSize={"1.625rem"}
+          lineHeight={"2rem"}
+        >
+          Contact
+        </Typography>
+        <Typography
+          mt={"0.813rem"}
+          fontFamily={"Source Serif Pro"}
+          fontWeight={"400"}
+          fontSize={"1.125rem"}
+          lineHeight={"1.409rem"}
+        >
+          Love to hear your thoughts, fears & feelings...
+        </Typography>
+      </Container>
+    </Box>
   );
 }
+
+// <section className={classes.contact}>
+//   <h1>How can I help you ?</h1>
+//   <form className={classes.form} onSubmit={handleSendMessage}>
+//     <div className={classes.controls}>
+//       <div className={classes.control}>
+//         <label htmlFor="email">Your Email</label>
+//         <input
+//           type="email"
+//           id="email"
+//           required
+//           value={enteredEmail}
+//           onChange={(event) => setEnteredEmail(event.target.value)}
+//         />
+//       </div>
+//       <div className={classes.control}>
+//         <label htmlFor="name">Your Name</label>
+//         <input
+//           type="text"
+//           id="name"
+//           required
+//           value={enteredName}
+//           onChange={(event) => setEnteredName(event.target.value)}
+//         />
+//       </div>
+//     </div>
+//     <div className={classes.control}>
+//       <label htmlFor="message">Your Message</label>
+//       <textarea
+//         id="message"
+//         rows="5"
+//         value={enteredMessage}
+//         required
+//         onChange={(event) => setEnteredMessage(event.target.value)}
+//       ></textarea>
+//     </div>
+//     <div className={classes.actions}>
+//       <button>Send Message</button>
+//     </div>
+//   </form>
+//   {notification && (
+//     <Notification
+//       status={notification.status}
+//       message={notification.message}
+//       title={notification.title}
+//     />
+//   )}
+// </section>
